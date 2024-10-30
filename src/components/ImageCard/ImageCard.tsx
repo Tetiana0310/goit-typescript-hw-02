@@ -1,7 +1,13 @@
+import { Image } from "../../types";
 import css from "../ImageCard/ImageCard.module.css"
 
-export default function ImageCard({ image, openModal }) {
-  const onSubmit = () => {
+interface ImageCardView {
+  openModal: (imageUrl: string) => void;
+  image: Image;
+}
+
+const ImageCard: React.FC<ImageCardView> = ({ image, openModal }) => {
+  const onSubmit = (): void => {
     openModal(image.urls.regular);
   };
 
@@ -19,3 +25,4 @@ export default function ImageCard({ image, openModal }) {
     </li>
   );
 }
+export default ImageCard;

@@ -1,14 +1,19 @@
+import { Image } from "../../types.js";
 import ImageCard from "../ImageCard/ImageCard.js"
- import css from "../ImageGallery/ImageGallery.module.css"
+import css from "../ImageGallery/ImageGallery.module.css"
+ 
 
-export default function ImageGallery({ images, openModal }) {
+interface ImageGalleryView {
+  images: Image[];
+  openModal: (imageUrl: string) => void;
+}
+
+const ImageGallery: React.FC<ImageGalleryView> = ({ images, openModal }) => {
   return (
     <ul className={css.list}>
       {images.map((image) => (
         <ImageCard
           key={image.id}
-          src={image.urls.small}
-          alt={image.alt_description}
           openModal={openModal}
           image={image}
         />
@@ -16,3 +21,4 @@ export default function ImageGallery({ images, openModal }) {
     </ul>
   );
 }
+export default ImageGallery;

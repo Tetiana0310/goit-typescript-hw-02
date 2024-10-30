@@ -1,8 +1,17 @@
 import Modal from "react-modal";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-
 import css from "./ImageModal.module.css";
-export default function ImageModal({ isOpen, imageUrl, onRequestClose }) {
+
+interface ImageModalView {
+  isOpen: boolean;
+  imageUrl: string;
+  onRequestClose: () => void;
+}
+const ImageModal: React.FC<ImageModalView> = ({
+  isOpen,
+  imageUrl,
+  onRequestClose,
+}) => {
   const customStyles = {
     overlay: {
       backgroundColor: "rgba(0, 0, 0, 0.7)", 
@@ -39,7 +48,7 @@ export default function ImageModal({ isOpen, imageUrl, onRequestClose }) {
         <button
           type="button"
           className={css.close}
-          onClick={() => onRequestClose(false)}
+          onClick={() => onRequestClose()}
         >
           <AiOutlineCloseCircle />
         </button>
@@ -47,3 +56,4 @@ export default function ImageModal({ isOpen, imageUrl, onRequestClose }) {
     </>
   );
 }
+export default ImageModal;

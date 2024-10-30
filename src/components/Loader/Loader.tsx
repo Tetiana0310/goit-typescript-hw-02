@@ -1,7 +1,7 @@
 import css from "../Loader/Loader.module.css";
 import { MagnifyingGlass } from "react-loader-spinner";
 
-export default function Loader() {
+const Loader: React.FC = () => {
   return (
     <>
       <MagnifyingGlass
@@ -12,7 +12,7 @@ export default function Loader() {
         wrapperStyle={{}}
         wrapperClass="magnifying-glass-wrapper"
         glassColor="#c0efff"
-        color="#e15b64"
+        color="#00008B4"
       />
     </>
   );
