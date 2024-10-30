@@ -1,11 +1,15 @@
 import toast from "react-hot-toast";
 import css from "../Searchbar/Searchbar.module.css"
 
-export default function Searchbar({ onSubmit }) {
-    const onSearch = (event) => {
+interface SearchBarView {
+  onSubmit: (value: string) => void;
+}
+
+const SearchBar: React.FC<SearchBarView> = ({ onSubmit }) => {
+     const onSearch = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const form = event.target;
-    const value = form.query.value;
+    const form = event.target as HTMLFormElement;;
+       const value = form.query.value;
     if (!value) {
       toast.error("Please, enter your query", {
         style: {
@@ -31,3 +35,4 @@ export default function Searchbar({ onSubmit }) {
   </form>
 </header>) 
 }
+export default SearchBar
