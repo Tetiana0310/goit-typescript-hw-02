@@ -7,19 +7,20 @@ import LoadMoreBtn from './components/LoadMoreBtn/LoadMoreBtn';
 import ErrorMessage from './components/ErrorMessage/ErrorMessage';
 import ImageModal from './components/ImageModal/ImageModal'; 
 import { Toaster } from 'react-hot-toast'; 
+import { FetchImagesResponse } from './types';
 
 export default function App() {
-  const [images, setImages] = useState([]);
-  const [query, setQuery] = useState("");
-  const [page, setPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [modalImageUrl, setModalImageUrl] = useState("");
-  const [endOfCollection, setEndOfCollection] = useState(false);
+  const [images, setImages] = useState <FetchImagesResponse["results"]>([]);
+  const [query, setQuery] = useState<string>("");
+  const [page, setPage] = useState<number>(1);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const [modalImageUrl, setModalImageUrl] = useState<string>("");
+  const [endOfCollection, setEndOfCollection] = useState<boolean>(false);
 
   
-  function loadMore() {
+  function loadMore() : void {
     setPage(page + 1);
   }
 
@@ -58,7 +59,7 @@ export default function App() {
 }, [page, query]);
 
 
-  const openModal = (imageUrl) => {
+  const openModal = (imageUrl: string): void => {
     setModalImageUrl(imageUrl);
     setModalIsOpen(true);
   };
@@ -67,7 +68,7 @@ export default function App() {
     setModalIsOpen(false);
   };
 
-  const onSubmit = (searchQuery) => {
+  const onSubmit = (searchQuery:string) => {
     setQuery(searchQuery);
     setImages([]);
     setPage(1);
